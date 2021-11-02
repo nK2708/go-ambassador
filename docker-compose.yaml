@@ -1,9 +1,10 @@
 version: '3.9'
 services:
   backend:
+    platform: linux/amd64
     build: .
     ports:
-      - 8000:8000
+      - "8000:8000"
     volumes:
       - .:/app
     depends_on:
@@ -11,7 +12,7 @@ services:
       - redis
 
   db:
-    image: mysql:5.7.22
+    image: mariadb:10
     restart: always
     environment:
       MYSQL_DATABASE: ambassador
@@ -21,9 +22,9 @@ services:
     volumes:
       - .dbdata:/var/lib/mysql
     ports:
-      - 33066:3306
+      - "33066:3306"
 
   redis:
     image: redis:latest
     ports:
-      - 6379:6379
+      - "6379:6379"
