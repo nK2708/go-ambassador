@@ -13,6 +13,8 @@ func Connect() {
 
 	DB, err = gorm.Open(mysql.Open("root:root@tcp(db:3306)/ambassador"), &gorm.Config{})
 
+	DB = DB.Debug()
+
 	if err != nil {
 		panic("Could not connect with the database!")
 	}
